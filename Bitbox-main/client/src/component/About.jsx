@@ -1,10 +1,11 @@
 import "./css/About.css";
 import PropTypes from 'prop-types';
 // import { useEffect } from "react";
+// images import
 import img1 from "../assets/images/Anuj.png";
 import img2 from "../assets/images/Jitendra.png";
-import img3 from "../assets/images/Harshit.png";
-import img4 from "../assets/images/Rajesh.png";
+import img3 from "../assets/images/Rajesh.png";
+import img4 from "../assets/images/Harshit.png";
 import AboutImgHero from "../assets/images/Others/heroimg.png";
 import '@fortawesome/fontawesome-free/css/all.css';
 import { faCoffee } from '@fortawesome/free-solid-svg-icons';
@@ -154,7 +155,7 @@ export default function About(props) {
                   Rajesh Kumar : Entry-level software engineer skilled in Java, C#, HTML, CSS, and JavaScript. Eager to leverage abilities in problem-solving and project development for organizational growth.
                 </div>
                 <div className="team-avatar">
-                  <img src={img4} />
+                  <img src={img3} />
                 </div>
                 <div className="team-details">
                   <h3 className="team-name" style={{ color: props.mode === 'dark' ? 'white' : 'black' }}>
@@ -179,7 +180,7 @@ export default function About(props) {
                   Harshit Singh: Entry-level software engineer skilled in C, C++, Python, HTML, CSS, and JavaScript. Eager to leverage abilities in problem-solving and project development for organizational growth.
                 </div>
                 <div className="team-avatar">
-                  <img src={img3} />
+                  <img src={img4} />
                 </div>
                 <div className="team-details">
                   <h3 className="team-name" style={{ color: props.mode === 'dark' ? 'white' : 'black' }}>
