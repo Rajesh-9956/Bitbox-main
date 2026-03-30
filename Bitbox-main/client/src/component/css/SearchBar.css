@@ -11,7 +11,8 @@
     font-size: 18px;
     padding: 15px;
     height: 30px;
-    width: 600px;
+    width: 100%;
+    max-width: 600px;
     border: 2px solid black;
 }
 

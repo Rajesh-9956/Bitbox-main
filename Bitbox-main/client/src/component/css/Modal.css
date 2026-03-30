@@ -13,7 +13,7 @@
     justify-content: center;
     align-items: center;
     margin: 2rem 0;
-    width: 100vw;
+    width: 100%;
 }
 
 .project-modal-container {
@@ -23,10 +23,13 @@
     border: 1px solid;
     padding: 20px;
     border-radius: 16px;
+    flex-wrap: wrap;
+    max-width: 100%;
 }
 
 .project-modal-left {
-    width: 35vw;
+    width: 100%;
+    max-width: 600px;
 }
 
 .modal-left-head {
@@ -129,8 +132,9 @@
 }
 
 .modal-project-image img {
-    width: 31rem;
-    height: 20rem;
+    width: 100%;
+    max-width: 31rem;
+    height: auto;
     border-radius: 16px;
     overflow: hidden;
     cursor: pointer;
@@ -138,8 +142,10 @@
 }
 
 .modal-project-vedio iframe {
-    width: 31rem;
-    height: 20rem;
+    width: 100%;
+    max-width: 31rem;
+    height: auto;
+    aspect-ratio: 16/9;
     border-radius: 16px;
     overflow: hidden;
     cursor: pointer;
@@ -165,7 +171,8 @@
     border-radius: 16px;
     padding: 13px;
     gap: 4.5rem;
-    width: 34.5vw;
+    width: 100%;
+    max-width: 500px;
 }
 
 .modal-post-commment {
@@ -295,7 +302,8 @@
 .project-modal-right {
     display: flex;
     flex-direction: column;
-    width: 20vw;
+    width: 100%;
+    max-width: 400px;
     gap: 24px;
 }
 
@@ -416,7 +424,7 @@
 
 .modal-suggestion-container {
     min-height: 20vh;
-    width: 18vw;
+    width: 100%;
     border: 1px solid black;
     border-radius: 16px;
     display: flex;

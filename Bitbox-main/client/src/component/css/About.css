@@ -90,13 +90,15 @@
 /*works janky on mobile :<*/
 .about-right-page .container {
   position: relative;
-  width: 500px;
+  width: 100%;
+  max-width: 500px;
   min-height: 254px;
   transition: 200ms;
 }
 
 .about-right-page .container:active {
-  width: 500px;
+  width: 100%;
+  max-width: 500px;
   min-height: 245px;
 }
 
@@ -539,7 +541,8 @@ h2 {
   /* font-family: 'Open Sans', sans-sericolor: #f27f21; */
   height: 300px;
   text-align: center;
-  width: 300px;
+  width: 100%;
+  max-width: 300px;
   padding: 45px 45px 45px;
   margin: 0 auto;
   border: 3px solid #f27f21;
@@ -645,13 +648,13 @@ h2 {
 
 /* FAQ */
 .faq-section .container {
-  min-width: 100vw;
+  min-width: 100%;
   padding: 2rem;
 }
 
 .faq-section {
   min-height: 55vh;
-  width: 100vw;
+  width: 100%;
   display: flex;
   justify-content: center;
   align-items: center;
