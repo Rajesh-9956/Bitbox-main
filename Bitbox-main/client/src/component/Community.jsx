@@ -6,8 +6,8 @@ import axios from 'axios';
 import CommunityCard from './CommunityCard';
 import profileContext from '../context/profileContext';
 import './EditProfile'
-// CSS
-import './css/Community.css'
+// CSS Removed for Tailwind
+// import './css/Community.css'
 // PNG
 // import projectDummyImage from '../assets/images/Others/projects.png'
 import avatar from '../assets/images/Dropdown/avatar.png';
@@ -97,54 +97,66 @@ const Community = (props) => {
 
   return (
     <>
-      <div className="user-profile-dashboard">
-        <div className="user-details">
-          <div className="globalproject-left" style={{ background: props.mode === 'dark' ? 'black' : 'white', color: props.mode === 'dark' ? 'white' : 'black', borderRight: props.mode === 'dark' ? '1px solid white' : '' }}>
-            <div className="globaldetail-left" style={{ background: props.mode === 'dark' ? 'black' : 'white', color: props.mode === 'dark' ? 'white' : 'black' }}>
-              <div className="profile-picture mb-3 mt-2">
-                {image ? (
-                  <img src={image} alt="avatar" style={{ background: props.mode === 'dark' ? 'white' : '', outline: props.mode === 'dark' ? '2px solid white' : '' }} />
-                ) : (
-                  <img
-                    src={avatar} style={{ background: props.mode === 'dark' ? 'white' : '', outline: props.mode === 'dark' ? '2px solid white' : '' }}
-                    className="avatar img-circle"
-                    alt="avatar"
-                  />
-                )}
-              </div>
-              <div className="global-bio">
-                <div>Name: <span>{userProfile.name}</span></div>
-                <div>College: <span>{userProfile.college}</span></div>
-              </div>
-              <hr />
-              <div className="global-links">
-                <h3>Discover</h3>
-                <div>Popular</div>
-                <div>Most Viewed</div>
-                <div>Top rated</div>
-              </div>
-              <hr />
-              <div className="global-skills">
-                <h3>Contri</h3>
-                <div>Discussion</div>
+      <div className={`min-h-screen pt-24 pb-12 font-sans relative overflow-hidden ${props.mode === 'dark' ? 'bg-[#05050A] text-white' : 'bg-[#f8fafc] text-gray-900'}`}>
+        
+        {/* Abstract Background Elements */}
+        {props.mode === 'dark' && (
+            <>
+                <div className="absolute top-[10%] left-[-5%] w-[500px] h-[500px] bg-indigo-600/10 blur-[150px] rounded-full pointer-events-none"></div>
+                <div className="absolute bottom-[-10%] right-[10%] w-[600px] h-[600px] bg-fuchsia-600/10 blur-[150px] rounded-full animate-float-slow pointer-events-none"></div>
+            </>
+        )}
 
-              </div>
-              <hr />
-              <div className="global-experience">
-                <h3>Manage</h3>
-                <div>Saved</div>
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10 flex flex-col lg:flex-row gap-8">
+          
+          {/* Left Sidebar */}
+          <div className="w-full lg:w-1/4 flex-shrink-0 animate-slide-up">
+            <div className={`sticky top-28 p-6 rounded-[2rem] shadow-xl ${props.mode === 'dark' ? 'card-3d bg-[#151525]' : 'bg-white border border-gray-100'}`}>
+              
+              {/* Profile Area */}
+              <div className="flex flex-col items-center mb-8">
+                <div className={`w-24 h-24 mb-4 rounded-full p-1 shadow-lg ${props.mode === 'dark' ? 'bg-[#0B0B13] border-2 border-indigo-500/50 shadow-neon' : 'bg-indigo-50 border-2 border-indigo-200'}`}>
+                  {image ? (
+                    <img src={image} alt="avatar" className="w-full h-full object-cover rounded-full" />
+                  ) : (
+                    <img src={avatar} className="w-full h-full object-cover rounded-full" alt="avatar" />
+                  )}
+                </div>
+                <h3 className={`text-xl font-extrabold ${props.mode === 'dark' ? 'text-white' : 'text-gray-900'}`}>{userProfile.name}</h3>
+                <p className={`text-sm font-semibold tracking-wide ${props.mode === 'dark' ? 'text-cyan-400' : 'text-indigo-600'}`}>{userProfile.college || 'Bitbox Member'}</p>
               </div>
 
-              <div className="global-share">
-                <h3>Share</h3>
-                <div>Invite friends</div>
+              <hr className={`my-6 ${props.mode === 'dark' ? 'border-gray-800' : 'border-gray-100'}`} />
+
+              {/* Navigation Links */}
+              <div className="space-y-6">
+                <div>
+                  <h4 className={`text-xs font-bold uppercase tracking-widest mb-3 ${props.mode === 'dark' ? 'text-gray-500' : 'text-gray-400'}`}>Discover</h4>
+                  <ul className="space-y-2">
+                    {['Popular', 'Most Viewed', 'Top Rated'].map(item => (
+                      <li key={item} className={`cursor-pointer font-medium px-3 py-2 rounded-xl transition-all ${props.mode === 'dark' ? 'text-gray-300 hover:bg-[#0B0B13] hover:text-white' : 'text-gray-600 hover:bg-gray-50 hover:text-indigo-600'}`}>{item}</li>
+                    ))}
+                  </ul>
+                </div>
+                
+                <div>
+                  <h4 className={`text-xs font-bold uppercase tracking-widest mb-3 ${props.mode === 'dark' ? 'text-gray-500' : 'text-gray-400'}`}>Manage</h4>
+                  <ul className="space-y-2">
+                    <li className={`cursor-pointer font-medium px-3 py-2 rounded-xl transition-all ${props.mode === 'dark' ? 'text-gray-300 hover:bg-[#0B0B13] hover:text-white' : 'text-gray-600 hover:bg-gray-50 hover:text-indigo-600'}`}>Saved Projects</li>
+                    <li className={`cursor-pointer font-medium px-3 py-2 rounded-xl transition-all ${props.mode === 'dark' ? 'text-gray-300 hover:bg-[#0B0B13] hover:text-white' : 'text-gray-600 hover:bg-gray-50 hover:text-indigo-600'}`}>Discussions</li>
+                  </ul>
+                </div>
               </div>
+
             </div>
           </div>
-          <div className="globalproject-right">
-            <div className="globaldetail-right">
-              <h2 className='Heading-Page'>Welcome to Bitbox Community</h2>
-              <div>
+          
+          {/* Right Content Area */}
+          <div className="flex-1 lg:max-w-3xl xl:max-w-4xl animate-slide-up" style={{ animationDelay: '0.2s' }}>
+            <div className="mb-10">
+              <h2 className="text-4xl md:text-5xl font-extrabold mb-2 tracking-tight">Community <span className="text-gradient">Projects</span></h2>
+              <p className={`text-lg font-medium ${props.mode === 'dark' ? 'text-gray-400' : 'text-gray-500'}`}>Explore innovations from builders worldwide.</p>
+            </div>
                 {/* Detail Button trigger modal */}
                 <button ref={refDetails} className="btn" data-bs-toggle="modal" data-bs-target="#detailToggle">
                 </button>
@@ -500,16 +512,10 @@ const Community = (props) => {
                   </div>
                 </div>
 
-                <div className='container Global-Sec-Container'>
-                  <div className='row'>
-                    {globalProjects.map((project) => {
-                      return <CommunityCard showAlert={props.showAlert} mode={mode} showDetailProject={showDetailProject} key={project._id} project={project} />;
-                    })}
-                    {/* <div className="container community-prev-next d-flex justify-content-between">
-                      <button type='button' className='btn btn-dark' onClick={handlePrevClick}>&larr; Previous</button>
-                      <button type='button' className='btn btn-dark' onClick={handleNextClick}>Next &larr;</button>
-                    </div> */}
-                  </div>
+                <div className='grid grid-cols-1 md:grid-cols-2 lg:grid-cols-2 xl:grid-cols-3 gap-6'>
+                  {globalProjects.map((project) => (
+                    <CommunityCard showAlert={props.showAlert} mode={mode} showDetailProject={showDetailProject} key={project._id} project={project} />
+                  ))}
                 </div>
                 {/* youTube video Modal */}
                 {showVideo && (
@@ -536,8 +542,6 @@ const Community = (props) => {
                     </div>
                   </div>
                 )}
-              </div>
-            </div>
           </div>
         </div>
       </div>

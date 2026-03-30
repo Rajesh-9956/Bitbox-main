@@ -6,9 +6,7 @@ import projectContext from '../context/projectContext';
 import profileContext from '../context/profileContext';
 import MyProfileCard from './MyProfileCard';
 import UploadProject from './UploadProject';
-// CSS
-import './css/Modal.css'
-import './css/MyProfile.css'
+// CSS removed for tailwind
 // PNG
 // import projectDummyImage from '../assets/images/Others/projects.png'
 import avatar from '../assets/images/Dropdown/avatar.png';
@@ -129,60 +127,65 @@ const MyProfile = (props) => {
     };
 
     return (
-        <div>
-            <div className="user-profile-dashboard">
-                <div className="user-details">
-                    <div className="userprofile-left" style={{ background: props.mode === 'dark' ? 'black' : 'white', color: props.mode === 'dark' ? 'white' : 'black', borderRight: props.mode === 'dark' ? '1px solid white' : '' }}>
-                        <div className="userdetail-left">
-                            {/* User Profile Information */}
-                            {/* <Link to='/edituser' onClick={handleEditClick}>Edit</Link> */}
-                            {/* <button onClick={handleEditClick}><link rel="stylesheet" href="/editprofile" />Edit</button> */}
-                            <div className="profile-picture mb-3 mt-2">
+        <div className={`min-h-screen pt-24 pb-12 font-sans relative overflow-hidden ${props.mode === 'dark' ? 'bg-[#05050A] text-white' : 'bg-[#f8fafc] text-gray-900'}`}>
+            
+            {/* Abstract Background Elements */}
+            {props.mode === 'dark' && (
+                <>
+                    <div className="absolute top-[10%] left-[-5%] w-[500px] h-[500px] bg-indigo-600/10 blur-[150px] rounded-full pointer-events-none"></div>
+                    <div className="absolute bottom-[-10%] right-[10%] w-[600px] h-[600px] bg-fuchsia-600/10 blur-[150px] rounded-full animate-float-slow pointer-events-none"></div>
+                </>
+            )}
+
+            <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10 flex flex-col lg:flex-row gap-8">
+                
+                {/* Left Sidebar */}
+                <div className="w-full lg:w-1/4 flex-shrink-0 animate-slide-up">
+                    <div className={`sticky top-28 p-6 rounded-[2rem] shadow-xl ${props.mode === 'dark' ? 'card-3d bg-[#151525]' : 'bg-white border border-gray-100'}`}>
+                        
+                        {/* Profile Area */}
+                        <div className="flex flex-col items-center mb-8">
+                            <div className={`w-28 h-28 mb-4 rounded-full p-1 shadow-lg cursor-pointer transition-transform hover:scale-105 ${props.mode === 'dark' ? 'bg-[#0B0B13] border-2 border-indigo-500/50 shadow-neon' : 'bg-indigo-50 border-2 border-indigo-200'}`}>
                                 {image ? (
-                                    <img src={image} alt="avatar" style={{ background: props.mode === 'dark' ? 'white' : '', outline: props.mode === 'dark' ? '2px solid white' : '' }} />
+                                    <img src={image} alt="avatar" className="w-full h-full object-cover rounded-full" />
                                 ) : (
-                                    <img
-                                        src={avatar} style={{ background: props.mode === 'dark' ? 'white' : '', outline: props.mode === 'dark' ? '2px solid white' : '' }}
-                                        className="avatar img-circle"
-                                        alt="avatar"
-                                    />
+                                    <img src={avatar} className="w-full h-full object-cover rounded-full" alt="avatar" />
                                 )}
                             </div>
-                            <div className="user-bio">
-                                <div>Name: <span>{userProfile.name}</span></div>
-                                <div>Address : <span>{userProfile.address}</span></div>
-                                <div>College : <span>{userProfile.college}</span></div>
-                                <div>Phone : <span>{userProfile.phone}</span></div>
+                            <h3 className={`text-xl font-extrabold ${props.mode === 'dark' ? 'text-white' : 'text-gray-900'}`}>{userProfile.name}</h3>
+                            <p className={`text-sm font-semibold tracking-wide ${props.mode === 'dark' ? 'text-cyan-400' : 'text-indigo-600'}`}>{userProfile.college || 'Bitbox Member'}</p>
+                            
+                            <div className="w-full mt-4 space-y-2 text-sm">
+                                <div className={`flex justify-between pb-1 border-b ${props.mode === 'dark' ? 'border-gray-800 text-gray-400' : 'border-gray-100 text-gray-500'}`}>
+                                    <span>Phone</span>
+                                    <span className={props.mode === 'dark' ? 'text-white' : 'text-gray-900'}>{userProfile.phone || 'N/A'}</span>
+                                </div>
+                                <div className={`flex justify-between pb-1 border-b ${props.mode === 'dark' ? 'border-gray-800 text-gray-400' : 'border-gray-100 text-gray-500'}`}>
+                                    <span>Address</span>
+                                    <span className={props.mode === 'dark' ? 'text-white' : 'text-gray-900'}>{userProfile.address || 'N/A'}</span>
+                                </div>
                             </div>
-                            <hr />
-                            <div className="user-links">
-                                <h3>Discover</h3>
-                                <div>Popular</div>
-                                <div>Most Viewed</div>
-                                <div>Top rated</div>
-                            </div>
-                            <hr />
-                            <div className="user-skills">
-                                <h3>Contri</h3>
-                                <div>Discussion</div>
+                            
+                            <button className={`mt-6 w-full py-2.5 rounded-xl font-bold transition-all shadow-md ${props.mode === 'dark' ? 'bg-indigo-600 text-white shadow-neon hover:bg-indigo-500' : 'bg-indigo-600 text-white hover:bg-indigo-700'}`}>Edit Profile</button>
+                        </div>
+                        
+                        <hr className={`my-6 ${props.mode === 'dark' ? 'border-gray-800' : 'border-gray-100'}`} />
 
-                            </div>
-                            <hr />
-                            <div className="user-experience">
-                                <h3>Manage</h3>
-                                <div>Saved</div>
-                            </div>
-
-                            <div className="user-share">
-                                <h3>Share</h3>
-                                <div>Invite friends</div>
+                        {/* Navigation Links */}
+                        <div className="space-y-6">
+                            <div>
+                                <h4 className={`text-xs font-bold uppercase tracking-widest mb-3 ${props.mode === 'dark' ? 'text-gray-500' : 'text-gray-400'}`}>Your Activity</h4>
+                                <ul className="space-y-2">
+                                    <li className={`cursor-pointer font-medium px-3 py-2 rounded-xl transition-all ${props.mode === 'dark' ? 'text-gray-300 hover:bg-[#0B0B13] hover:text-white' : 'text-gray-600 hover:bg-gray-50 hover:text-indigo-600'}`}>Uploaded Projects</li>
+                                    <li className={`cursor-pointer font-medium px-3 py-2 rounded-xl transition-all ${props.mode === 'dark' ? 'text-gray-300 hover:bg-[#0B0B13] hover:text-white' : 'text-gray-600 hover:bg-gray-50 hover:text-indigo-600'}`}>Saved Projects</li>
+                                </ul>
                             </div>
                         </div>
-                    </div>
 
-                    <div className="userproject-right">
-                        <div className="userdetail-right">
-                            {/* Edit Button trigger modal */}
+                    </div>
+                </div>
+
+                    {/* Edit Button trigger modal */}
                             <button ref={refEdit} type="button" className="btn btn-primary d-none" data-bs-toggle="modal" data-bs-target="#newModal">
 
                             </button>
@@ -599,13 +602,16 @@ const MyProfile = (props) => {
                                     </div>
                                 </div>
                             </div>
-                            <div className='container User-Sec-Container'>
-                                <h2 className='Heading-Page text-center mb-4'>My Uploaded Projects</h2>
+                            <div className="flex-1 lg:max-w-3xl xl:max-w-4xl animate-slide-up" style={{ animationDelay: '0.2s' }}>
+                                <div className="mb-10 text-center lg:text-left">
+                                    <h2 className="text-4xl md:text-5xl font-extrabold mb-2 tracking-tight">My <span className="text-gradient">Projects</span></h2>
+                                    <p className={`text-lg font-medium ${props.mode === 'dark' ? 'text-gray-400' : 'text-gray-500'}`}>Manage and showcase your uploads.</p>
+                                </div>
                                 {userProjects.length === 0 && <UploadProject mode={mode} showAlert={props.showAlert} title="Click Here To Upload" />}
-                                <div className='row'>
-                                    {userProjects.map((project) => {
-                                        return <MyProfileCard style={{ color: props.mode === 'dark' ? '#100000' : '100001' }} key={project._id} mode={mode} updateProject={updateProject} showDetailProject={showDetailProject} project={project} showAlert={props.showAlert} />;
-                                    })}
+                                <div className='grid grid-cols-1 md:grid-cols-2 lg:grid-cols-2 xl:grid-cols-3 gap-6'>
+                                    {userProjects.map((project) => (
+                                        <MyProfileCard key={project._id} mode={mode} updateProject={updateProject} showDetailProject={showDetailProject} project={project} showAlert={props.showAlert} />
+                                    ))}
                                 </div>
                             </div>
 
@@ -634,9 +640,6 @@ const MyProfile = (props) => {
                                     </div>
                                 </div>
                             )}
-                        </div>
-                    </div>
-                </div>
             </div>
         </div>
     )

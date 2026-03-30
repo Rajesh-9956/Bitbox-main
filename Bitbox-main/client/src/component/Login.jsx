@@ -2,7 +2,7 @@ import PropTypes from 'prop-types';
 import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { Link } from 'react-router-dom';
-import './css/Auth.css'
+import { FiMail, FiLock, FiArrowRight } from 'react-icons/fi';
 
 const host = "http://localhost:5000";
 
@@ -40,29 +40,56 @@ const Login = (props) => {
   }
 
   return (
-    <div className="Login">
-      <div className='container main-bx'>
-        <div className="heading">Login</div>
-        <div className='p-3'>
-          {/* <h2>Login into Bitbox</h2> */}
-          <form className='form' onSubmit={handleSubmit}>
-            <div className="mb-2">
-              <label htmlFor="email" className="input" id='email'>Email address</label>
-              <input type="email" className="form-control" placeholder='Enter Your Email' value={credentials.email} onChange={onChange} id="email" name='email' aria-describedby="emailHelp" autoComplete='on' />
+    <div className={`min-h-screen flex items-center justify-center py-20 px-4 sm:px-6 lg:px-8 relative overflow-hidden ${props.mode === 'dark' ? 'bg-[#05050A] text-white' : 'bg-gray-50 text-gray-900'}`}>
+      
+      {/* Background Orbs */}
+      {props.mode === 'dark' && (
+        <>
+            <div className="absolute top-[-10%] left-[-10%] w-[40vw] h-[40vw] max-w-[500px] max-h-[500px] rounded-full bg-indigo-600/20 blur-[130px] animate-pulse-glow pointer-events-none"></div>
+            <div className="absolute bottom-[-10%] right-[-10%] w-[35vw] h-[35vw] max-w-[400px] max-h-[400px] rounded-full bg-fuchsia-600/15 blur-[120px] animate-float-delayed pointer-events-none"></div>
+        </>
+      )}
+
+      <div className={`w-full max-w-md p-8 md:p-10 rounded-[2.5rem] relative z-10 animate-slide-up sm:mx-4 ${props.mode === 'dark' ? 'card-3d bg-[#151525]' : 'bg-white shadow-2xl border border-gray-100'}`}>
+        <div className="text-center mb-8">
+            <h2 className="text-3xl md:text-4xl font-extrabold mb-2 tracking-tight">Welcome Back</h2>
+            <p className={`font-medium ${props.mode === 'dark' ? 'text-gray-400' : 'text-gray-500'}`}>Sign in to your Bitbox account</p>
+        </div>
+
+        <form onSubmit={handleSubmit} className="space-y-6">
+            <div className="space-y-2">
+              <label htmlFor="email" className={`text-sm font-bold tracking-wide uppercase ${props.mode === 'dark' ? 'text-gray-400' : 'text-gray-600'}`}>Email address</label>
+              <div className="relative">
+                <div className="absolute inset-y-0 left-0 pl-4 flex items-center pointer-events-none">
+                    <FiMail className={props.mode === 'dark' ? 'text-gray-500' : 'text-gray-400'} />
+                </div>
+                <input type="email" required className={`w-full pl-11 pr-4 py-3.5 rounded-xl border-2 focus:ring-4 transition-all outline-none font-medium ${props.mode === 'dark' ? 'bg-[#0B0B13] border-gray-800 focus:border-indigo-500 focus:ring-indigo-500/20 text-white placeholder-gray-600 focus:shadow-neon' : 'bg-gray-50 border-gray-200 focus:border-indigo-500 focus:ring-indigo-100 text-gray-900'}`} placeholder="name@company.com" value={credentials.email} onChange={onChange} id="email" name="email" autoComplete="email" />
+              </div>
             </div>
-            <div className="mb-2">
-              <label htmlFor="password" className="password">Password</label>
-              <input type="password" className="form-control" id='password' placeholder='Enter Your Password' value={credentials.password} onChange={onChange} name='password' autoComplete='on' />
+            
+            <div className="space-y-2">
+              <div className="flex items-center justify-between">
+                <label htmlFor="password" className={`text-sm font-bold tracking-wide uppercase ${props.mode === 'dark' ? 'text-gray-400' : 'text-gray-600'}`}>Password</label>
+                <a href="#" className="font-semibold text-sm text-indigo-500 hover:text-indigo-400 transition-colors">Forgot Password?</a>
+              </div>
+              <div className="relative">
+                <div className="absolute inset-y-0 left-0 pl-4 flex items-center pointer-events-none">
+                    <FiLock className={props.mode === 'dark' ? 'text-gray-500' : 'text-gray-400'} />
+                </div>
+                <input type="password" required className={`w-full pl-11 pr-4 py-3.5 rounded-xl border-2 focus:ring-4 transition-all outline-none font-medium ${props.mode === 'dark' ? 'bg-[#0B0B13] border-gray-800 focus:border-indigo-500 focus:ring-indigo-500/20 text-white placeholder-gray-600 focus:shadow-neon' : 'bg-gray-50 border-gray-200 focus:border-indigo-500 focus:ring-indigo-100 text-gray-900'}`} id="password" placeholder="••••••••" value={credentials.password} onChange={onChange} name="password" autoComplete="current-password" />
+              </div>
             </div>
-            <div className="text-center forgot-password"><a href="#">Forgot Password ?</a></div>
-            <div className="Signup-button">
-              <button type="submit" className="btn btn-primary" onChange={onChange} onSubmit={handleSubmit}>Login</button>
-            </div>
+
+            <button type="submit" className={`w-full flex items-center justify-center gap-3 py-4 px-8 rounded-xl font-extrabold text-lg transition-all ${props.mode === 'dark' ? 'bg-indigo-600 text-white btn-3d' : 'bg-indigo-600 hover:bg-indigo-700 text-white shadow-xl hover:-translate-y-1'}`}>
+              Sign in <FiArrowRight className="w-5 h-5" />
+            </button>
           </form>
-          <div className="social-account-container">
-            <div className='my-4 p-2 text-center'>Don&#39;t have an account?
-              <Link to="/Signup">Signup</Link>
-            </div>
+
+          <div className="mt-8 text-center">
+            <p className={`font-medium ${props.mode === 'dark' ? 'text-gray-400' : 'text-gray-600'}`}>
+              Don't have an account?{' '}
+              <Link to="/Signup" className="font-bold text-indigo-500 hover:text-indigo-400 transition-colors">Sign up</Link>
+            </p>
             {/* <span className="title">Or Sign in with</span> */}
             {/* <div className="social-accounts">
               <button className="social-button google">
@@ -81,10 +108,8 @@ const Login = (props) => {
                 </svg>
               </button>
             </div> */}
-            {/* <div className="agreement text-center"><a href="#">Learn user licence agreement</a></div> */}
           </div>
         </div>
-      </div>
     </div>
   )
 }

@@ -3,8 +3,7 @@ import { useNavigate } from "react-router-dom";
 import PropTypes from "prop-types";
 import profileContext from '../context/profileContext';
 import projectContext from "../context/projectContext";
-// CSS
-import "./css/ProjectCard.css";
+// CSS removed for tailwind
 // Image
 import avatarImg from "../assets/images/logo.png";
 import FavourModalImg from '../assets/images/Modal Image/Favourite.png'
@@ -69,79 +68,107 @@ const MyProfileCard = (props) => {
   const maxDescriptionLength = 75;
 
   return (
-    <div className="col-md-4 my-3">
-      {/* Project Card */}
-      <div className="projectContainer">
-        <div className="projectBox">
-          <div className="projectInfo" >
-            <div className="projectAvatar">
-              <img src={avatarImg} alt="avatar" />
+    <div className='w-full p-4 relative group perspective-[1000px]'>
+      <div className={`relative h-full overflow-hidden transition-all duration-500 transform-style-3d group-hover:rotate-x-2 group-hover:-translate-y-2 rounded-[2rem] p-6 border ${props.mode === 'dark' ? 'bg-[#151525] border-gray-800 shadow-[0_15px_35px_rgba(0,0,0,0.5)] group-hover:shadow-[0_20px_50px_rgba(34,211,238,0.15)] group-hover:border-cyan-500/30' : 'bg-white border-gray-100 shadow-xl group-hover:shadow-2xl group-hover:border-indigo-200'}`}>
+        
+        {/* Glow behind image on hover in dark mode */}
+        {props.mode === 'dark' && (
+           <div className="absolute top-0 right-0 w-32 h-32 bg-cyan-500/10 blur-[50px] rounded-full transition-opacity opacity-0 group-hover:opacity-100 pointer-events-none"></div>
+        )}
+
+        {/* Header */}
+        <div className="flex items-center justify-between mb-4">
+          <div className="flex items-center gap-4">
+            <div className={`w-12 h-12 rounded-xl flex items-center justify-center p-2 shadow-md ${props.mode === 'dark' ? 'bg-[#0B0B13] border border-gray-800 shadow-neon' : 'bg-indigo-50 border border-indigo-100'}`}>
+              <img src={avatarImg} alt="avatar" className="w-full h-full object-contain" />
             </div>
-            <div className="projectText">
-              <div className="projectTitle" style={{ color: props.mode === 'dark' ? '#100000' : '' }}>{project.title.length > maxTitleLength ? project.title.slice(0, maxTitleLength) + '...' : project.title}</div>
-              <div className="projectDetails">
-                <div className="projectUserName" style={{ color: props.mode === 'dark' ? '#100000' : '' }}>{userProfile.name}</div>
-                <div className="projectTime" style={{ color: props.mode === 'dark' ? '#100000' : '' }}>{formatDate(project.date)}</div>
-              </div>
-            </div>
-            <div className="project-modify">
-              <i className="fa-solid fa-trash" style={{ color: props.mode === 'dark' ? '#100000' : '' }} onClick={handleModalOpen}></i>
-              <i className="fa-solid fa-pen-to-square" style={{ color: props.mode === 'dark' ? '#100000' : '' }} onClick={() => updateProject(project)}></i>
+            <div>
+              <h3 className={`text-xl font-extrabold tracking-tight truncate ${props.mode === 'dark' ? 'text-white group-hover:text-cyan-400 transition-colors' : 'text-gray-900 group-hover:text-indigo-600'}`}>
+                  {project.title.length > maxTitleLength ? project.title.slice(0, maxTitleLength) + '...' : project.title}
+              </h3>
+              <p className={`text-xs font-bold tracking-widest uppercase mt-1 ${props.mode === 'dark' ? 'text-gray-500' : 'text-gray-400'}`}>
+                  {formatDate(project.date)}
+              </p>
             </div>
           </div>
-          <div className="projectDescription" style={{ color: props.mode === 'dark' ? '#100000' : '' }}>{project.description.length > maxDescriptionLength ? project.description.slice(0, maxDescriptionLength) + '...' : project.description}</div>
-          <div className="project-bottom-container">
-            <div className="projectVisualContainer">
-              <img
-                src={generateImageUrl(project._id)}
-                className="card-img-top"
-                alt="..."
-              />
-            </div>
-            <div className="projectEngagementContainer">
-              <div className="project-love">
-                <img src={FavourModalImg} alt="Love" />
-              </div>
-              <div className="project-comment">
-                <img src={commentModalImg} alt="Comment" />
-              </div>
-              <div className="project-link">
-                <img src={githubCardImg} href={project.gitHubLinkt} alt="Link" />
-              </div>
-              <div className="project-details" onClick={() => showDetailProject(project)}              >
-                <img src={DetailCardImg} alt="Details" />
-              </div>
-            </div>
+          
+          {/* Modify Actions (Edit/Delete) */}
+          <div className="flex items-center gap-2">
+            <button onClick={() => updateProject(project)} className={`p-2 rounded-xl transition-all hover:scale-110 ${props.mode === 'dark' ? 'bg-[#0B0B13] hover:bg-cyan-500/20 hover:text-cyan-400 text-gray-400 border border-gray-800' : 'bg-indigo-50 hover:bg-indigo-100 text-indigo-500'}`} title="Edit Project">
+              <i className="fa-solid fa-pen-to-square"></i>
+            </button>
+            <button onClick={handleModalOpen} className={`p-2 rounded-xl transition-all hover:scale-110 ${props.mode === 'dark' ? 'bg-[#0B0B13] hover:bg-rose-500/20 hover:text-rose-400 text-gray-400 border border-gray-800' : 'bg-rose-50 hover:bg-rose-100 text-rose-500'}`} title="Delete Project">
+              <i className="fa-solid fa-trash"></i>
+            </button>
+          </div>
+        </div>
+
+        {/* Body */}
+        <p className={`text-sm font-medium mb-6 leading-relaxed ${props.mode === 'dark' ? 'text-gray-400' : 'text-gray-600'}`}>
+          {project.description.length > maxDescriptionLength ? project.description.slice(0, maxDescriptionLength) + '...' : project.description}
+        </p>
+
+        {/* Hero Image */}
+        <div className="relative w-full h-48 rounded-2xl overflow-hidden mb-6 group-hover:shadow-inner transition-shadow border border-gray-800/50">
+          <img src={generateImageUrl(project._id)} className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110" alt="Project Visual" />
+          <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent opacity-0 group-hover:opacity-100 transition-opacity flex items-end p-4">
+              <span className="text-white text-xs font-bold uppercase tracking-widest">View Details</span>
+          </div>
+        </div>
+
+        {/* Footer Actions */}
+        <div className={`flex items-center justify-between pt-4 border-t ${props.mode === 'dark' ? 'border-gray-800' : 'border-gray-100'}`}>
+          <div className="flex items-center gap-3">
+            <button className={`p-2.5 rounded-xl transition-all hover:scale-110 ${props.mode === 'dark' ? 'bg-[#0B0B13] hover:bg-rose-500/20 hover:text-rose-400 text-gray-400 border border-gray-800' : 'bg-rose-50 hover:bg-rose-100 text-rose-500'}`} title="Like">
+              <img src={FavourModalImg} alt="Like" className="w-5 h-5 opacity-70 hover:opacity-100 filter-invert" style={{ filter: props.mode === 'dark' ? 'invert(1) brightness(0.7)' : 'none' }} />
+            </button>
+            <button className={`p-2.5 rounded-xl transition-all hover:scale-110 ${props.mode === 'dark' ? 'bg-[#0B0B13] hover:bg-indigo-500/20 hover:text-indigo-400 text-gray-400 border border-gray-800' : 'bg-indigo-50 hover:bg-indigo-100 text-indigo-500'}`} title="Comment">
+              <img src={commentModalImg} alt="Comment" className="w-5 h-5 opacity-70 hover:opacity-100" style={{ filter: props.mode === 'dark' ? 'invert(1) brightness(0.7)' : 'none' }} />
+            </button>
+          </div>
+          <div className="flex items-center gap-3">
+             <button onClick={() => window.open(project.gitHubLink, '_blank')} className={`p-2.5 rounded-xl transition-all hover:scale-110 ${props.mode === 'dark' ? 'bg-[#0B0B13] hover:bg-gray-700 text-gray-400 border border-gray-800' : 'bg-gray-100 hover:bg-gray-200 text-gray-700'}`} title="View Source">
+              <img src={githubCardImg} alt="GitHub" className="w-5 h-5 opacity-70 hover:opacity-100" style={{ filter: props.mode === 'dark' ? 'invert(1) brightness(0.7)' : 'none' }} />
+            </button>
+            <button onClick={() => showDetailProject(project)} className={`p-2.5 rounded-xl transition-all hover:scale-110 font-bold ${props.mode === 'dark' ? 'bg-indigo-600 text-white shadow-neon hover:bg-indigo-500' : 'bg-indigo-600 text-white shadow-md hover:bg-indigo-700'}`} title="View Details">
+              <img src={DetailCardImg} alt="Details" className="w-5 h-5 filter brightness-0 invert" />
+            </button>
           </div>
         </div>
       </div>
 
-      {/* Delete Confirmation Modal */}
+      {/* Delete Confirmation Modal Overlay */}
       {showModal && (
-        <div className="modal-wrapper" style={{ background: props.mode === 'dark' ? 'black' : '', outline: props.mode === 'dark' ? '1px solid white' : '' }}>
-          <div className="modal-card" style={{ background: props.mode === 'dark' ? 'black' : '', outline: props.mode === 'dark' ? '1px solid white' : '' }}>
-            <div className="card-content">
-              <p className="card-heading" style={{ color: props.mode === 'dark' ? 'white' : ''}}>{project.title}</p>
-              <p className="card-description" style={{ color: props.mode === 'dark' ? 'white' : ''}}>
-                Are you sure want to Delete project ?
-              </p>
-            </div>
-            <div className="card-button-wrapper">
-              <button
-                className="card-button secondary"
-                onClick={handleModalClose}
-              >
-                Cancel
-              </button>
-              <button className="card-button primary" onClick={handleDelete}>
-                Delete
-              </button>
-            </div>
-            <button className="exit-button" onClick={handleModalClose}>
-              <svg height="20px" viewBox="0 0 384 512" style={{ color: props.mode === 'dark' ? 'white' : ''}}> 
-                <path d="M342.6 150.6c12.5-12.5 12.5-32.8 0-45.3s-32.8-12.5-45.3 0L192 210.7 86.6 105.4c-12.5-12.5-32.8-12.5-45.3 0s-12.5 32.8 0 45.3L146.7 256 41.4 361.4c-12.5 12.5-12.5 32.8 0 45.3s32.8 12.5 45.3 0L192 301.3 297.4 406.6c12.5 12.5 32.8 12.5 45.3 0s12.5-32.8 0-45.3L237.3 256 342.6 150.6z"></path>
+        <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/60 backdrop-blur-sm animate-fade-in">
+          <div className={`relative w-full max-w-md p-8 rounded-[2rem] shadow-2xl transform transition-all scale-100 ${props.mode === 'dark' ? 'bg-[#151525] border border-rose-500/30 shadow-[0_0_40px_rgba(244,63,94,0.15)]' : 'bg-white border border-rose-100'}`}>
+            
+            <button onClick={handleModalClose} className={`absolute top-4 right-4 p-2 rounded-xl transition-colors ${props.mode === 'dark' ? 'hover:bg-gray-800 text-gray-400' : 'hover:bg-gray-100 text-gray-500'}`}>
+              <svg className="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
               </svg>
             </button>
+
+            <div className="flex flex-col items-center text-center">
+              <div className={`w-16 h-16 rounded-full flex items-center justify-center mb-6 mx-auto ${props.mode === 'dark' ? 'bg-rose-500/20 text-rose-400' : 'bg-rose-100 text-rose-500'}`}>
+                <svg className="w-8 h-8" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16" />
+                </svg>
+              </div>
+              
+              <h3 className={`text-2xl font-bold mb-2 text-center ${props.mode === 'dark' ? 'text-white' : 'text-gray-900'}`}>Delete Project</h3>
+              <p className={`text-center mb-8 ${props.mode === 'dark' ? 'text-gray-400' : 'text-gray-500'}`}>
+                Are you sure you want to delete <span className="font-bold text-rose-500">{project.title}</span>? This action cannot be undone.
+              </p>
+
+              <div className="flex gap-4 w-full">
+                <button onClick={handleModalClose} className={`flex-1 py-3 rounded-xl font-bold transition-all ${props.mode === 'dark' ? 'bg-[#0B0B13] text-gray-300 hover:bg-gray-800 border border-gray-700' : 'bg-gray-100 text-gray-700 hover:bg-gray-200'}`}>
+                  Cancel
+                </button>
+                <button onClick={handleDelete} className="flex-1 py-3 rounded-xl font-bold transition-all bg-rose-500 text-white hover:bg-rose-600 shadow-lg shadow-rose-500/30">
+                  Delete
+                </button>
+              </div>
+            </div>
           </div>
         </div>
       )}

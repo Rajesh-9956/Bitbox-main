@@ -1,4 +1,4 @@
-import "./css/About.css";
+// CSS removed for tailwind
 import PropTypes from 'prop-types';
 // import { useEffect } from "react";
 // images import
@@ -32,58 +32,36 @@ export default function About(props) {
   // }, []); // Empty dependency array ensures this effect runs only once when component mounts
 
   return (
-    <div>
+    <div className={`min-h-screen pt-24 pb-12 font-sans relative overflow-hidden ${props.mode === 'dark' ? 'bg-[#05050A] text-white' : 'bg-[#f8fafc] text-gray-900'}`}>
+        
+      {/* Abstract Background Elements */}
+      {props.mode === 'dark' && (
+          <>
+              <div className="absolute top-[10%] left-[-5%] w-[500px] h-[500px] bg-indigo-600/10 blur-[150px] rounded-full pointer-events-none"></div>
+              <div className="absolute top-[40%] right-[-10%] w-[600px] h-[600px] bg-cyan-600/10 blur-[150px] rounded-full pointer-events-none"></div>
+              <div className="absolute bottom-[10%] left-[20%] w-[400px] h-[400px] bg-fuchsia-600/10 blur-[150px] rounded-full animate-pulse-glow pointer-events-none"></div>
+          </>
+      )}
+
       {/* About Hero Section */}
-      <div className="about-content">
-        <section className="about-main-section">
-          <div className="about-content-left">
-            <h2 className="Heading-Page">About Us</h2>
-            <div className="about-section-desc fs-4">
-              Bitbox is like a friendly community where people working on
-              projects can come together. If you’re stuck or need advice, you
-              can ask for help. And if you know something, you can share your
-              knowledge with others. It’s all about supporting each other and
-              building a helpful community. 🌟
-              <br /> <br />
-              Welcome to our open-source platform, where innovation knows no
-              bounds and collaboration is key. Dive into our repository of
-              code, where creativity flourishes and solutions come to life.
-              Join our vibrant community of developers, enthusiasts, and
-              visionaries, as we build the future together, one line at a time
-            </div>
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10 animate-fade-in">
+        <section className="flex flex-col lg:flex-row items-center gap-12 py-12">
+          <div className="flex-1 space-y-8 text-center lg:text-left">
+            <h2 className="text-sm font-bold uppercase tracking-widest text-indigo-500 mb-2">Our Mission</h2>
+            <h3 className="text-4xl md:text-5xl lg:text-6xl font-extrabold tracking-tight">
+              About <br className="hidden lg:block"/><span className="text-gradient">Bitbox</span>
+            </h3>
+            <p className={`text-lg font-medium leading-relaxed max-w-2xl mx-auto lg:mx-0 ${props.mode === 'dark' ? 'text-gray-400' : 'text-gray-600'}`}>
+              Bitbox is a friendly community where people working on projects can come together. If you're stuck or need advice, you can ask for help. And if you know something, you can share your knowledge with others. It's all about supporting each other and building a helpful community. 🌟
+            </p>
+            <p className={`text-lg font-medium leading-relaxed max-w-2xl mx-auto lg:mx-0 ${props.mode === 'dark' ? 'text-gray-400' : 'text-gray-600'}`}>
+              Welcome to our open-source platform, where innovation knows no bounds and collaboration is key. Dive into our repository of code, where creativity flourishes and solutions come to life.
+            </p>
           </div>
-          <div className="about-right-page" data-engine="three.js r149">
-            <div className="container noselect">
-              <div className="canvas">
-                <div className="tracker tr-1"></div>
-                <div className="tracker tr-2"></div>
-                <div className="tracker tr-3"></div>
-                <div className="tracker tr-4"></div>
-                <div className="tracker tr-5"></div>
-                <div className="tracker tr-6"></div>
-                <div className="tracker tr-7"></div>
-                <div className="tracker tr-8"></div>
-                <div className="tracker tr-9"></div>
-                <div className="tracker tr-10"></div>
-                <div className="tracker tr-11"></div>
-                <div className="tracker tr-12"></div>
-                <div className="tracker tr-13"></div>
-                <div className="tracker tr-14"></div>
-                <div className="tracker tr-15"></div>
-                <div className="tracker tr-16"></div>
-                <div className="tracker tr-17"></div>
-                <div className="tracker tr-18"></div>
-                <div className="tracker tr-19"></div>
-                <div className="tracker tr-20"></div>
-                <div className="tracker tr-21"></div>
-                <div className="tracker tr-22"></div>
-                <div className="tracker tr-23"></div>
-                <div className="tracker tr-24"></div>
-                <div className="tracker tr-25"></div>
-                <div id="card">
-                  <img src={AboutImgHero} id="propmpt" alt="aboutVectorImg" />
-                </div>
-              </div>
+          
+          <div className="flex-1 flex justify-center perspective-[1200px]">
+            <div className={`p-4 rounded-[3rem] animate-float transform-style-3d ${props.mode === 'dark' ? 'bg-[#151525] border border-gray-800 shadow-[0_30px_60px_rgba(0,0,0,0.8)]' : 'bg-white shadow-2xl'}`}>
+                <img src={AboutImgHero} alt="About Hero" className="w-full max-w-md object-contain rounded-[2.5rem]" />
             </div>
           </div>
         </section>
@@ -91,257 +69,111 @@ export default function About(props) {
       {/* Website Record Section */}
 
       {/* Team Section */}
-      <div className="Team-Sec">
-        <div className="team-container">
-          <div className="team-content">
-            <h2 className="Heading-Page">
-              Our Team
-            </h2>
-            <div className="team-grid container ">
-              {/* card 1 */}
-              <div className="team-card">
-                <div className="team-text" style={{ color: props.mode === 'dark' ? 'white' : 'black' }}>
-                  Anuj Verma is a tech-savvy person who loves working with AI and building websites. He's gained experience through internships and projects, showing that he's ready to do great things in the tech world.
-                </div>
-                <div className="team-avatar">
-                  <img src={img1} />
-                </div>
-                <div className="team-details">
-                  <h3 className="team-name" style={{ color: props.mode === 'dark' ? 'white' : 'black' }}>
-                    Anuj Verma
-                  </h3>
-                  <p className="team-desc" style={{ color: props.mode === 'dark' ? 'white' : '#777' }}>
-                    BTech CSE AIML <br /> 
-                  </p>
-                </div>
-                <div className="team-links">
-                  <ul className="list-inline">
-                    <li className="list-inline-item"><a href="https://github.com/Anuj3553" className="text-decoration-none d-block px-1" target="blank"><i className="fab fa-github"></i></a></li>
-                    <li className="list-inline-item"><a href="" className="text-decoration-none d-block px-1" target="blank-1"><i className="fab fa-twitter"></i></a></li>
-                    <li className="list-inline-item"><a href="https://www.instagram.com/anuj.verma_official/?next=%2F" className="text-decoration-none d-block px-1" target="blank-2"><i className="fab fa-instagram"></i></a></li>
-                    <li className="list-inline-item"><a href="https://linkedin.com/in/anuj-verma-67493125a/" className="text-decoration-none d-block px-1" target="blank-3"><i className="fab fa-linkedin"></i></a></li>
-                  </ul>
-                </div>
-              </div>
-              {/* card 2 */}
-              <div className="team-card">
-                <div className="team-text" style={{ color: props.mode === 'dark' ? 'white' : 'black' }}>
-                Jitendra Kumar: Tech enthusiast skilled in web development and database management, showcasing expertise in projects like weather app and algorithm analyzer, poised for impactful contributions in the tech industry.
-                </div>
-                <div className="team-avatar">
-                  <img src={img2} />
-                </div>
-                <div className="team-details">
-                  <h3 className="team-name" style={{ color: props.mode === 'dark' ? 'white' : 'black' }}>
-                    Jitendra Kumar
-                  </h3>
-                  <p className="team-desc" style={{ color: props.mode === 'dark' ? 'white' : '#777' }}>
-                    BTech CSE AIML <br /> 
-                  </p>
-                </div>
-                <div className="team-links">
-                  <ul className="list-inline">
-                    <li className="list-inline-item"><a href="https://github.com/technical-jitendra" className="text-decoration-none d-block px-1" target="blank"><i className="fab fa-github"></i></a></li>
-                    <li className="list-inline-item"><a href="#" className="text-decoration-none d-block px-1" target="blank-1"><i className="fab fa-twitter"></i></a></li>
-                    <li className="list-inline-item"><a href="https://www.instagram.com/jitendra_technical_?igsh=MTR1cXEzeDNjejJxag==" className="text-decoration-none d-block px-1" target="blank-2"><i className="fab fa-instagram"></i></a></li>
-                    <li className="list-inline-item"><a href="https://www.linkedin.com/in/technicaljitendra" className="text-decoration-none d-block px-1" target="blank-3"><i className="fab fa-linkedin"></i></a></li>
-                  </ul>
-                </div>
-              </div>
-              
-              {/* card 3  */}
-              <div className="team-card">
-                <div className="team-text" style={{ color: props.mode === 'dark' ? 'white' : 'black' }}>
-                  Rajesh Kumar : Entry-level software engineer skilled in Java, C#, HTML, CSS, and JavaScript. Eager to leverage abilities in problem-solving and project development for organizational growth.
-                </div>
-                <div className="team-avatar">
-                  <img src={img3} />
-                </div>
-                <div className="team-details">
-                  <h3 className="team-name" style={{ color: props.mode === 'dark' ? 'white' : 'black' }}>
-                    Rajesh Kumar
-                  </h3>
-                  <p className="team-desc" style={{ color: props.mode === 'dark' ? 'white' : '#777' }}>
-                    BTech CSE AIML <br /> 
-                  </p>
-                </div>
-                <div className="team-links">
-                  <ul className="list-inline">
-                    <li className="list-inline-item"><a href="https://github.com/harshit7492" className="text-decoration-none d-block px-1" target="blank-3"><i className="fab fa-github"></i></a></li>
-                    <li className="list-inline-item"><a href="https://twitter.com/HarshitSin56914" className="text-decoration-none d-block px-1" target="blank-2"><i className="fab fa-twitter"></i></a></li>
-                    <li className="list-inline-item"><a href="https://www.instagram.com/thakurharshit9462/" className="text-decoration-none d-block px-1" target="blank-1"><i className="fab fa-instagram"></i></a></li>
-                    <li className="list-inline-item"><a href="https://www.linkedin.com/in/harshit-singh8" className="text-decoration-none d-block px-1" target="blank"><i className="fab fa-linkedin"></i></a></li>
-                  </ul>
-                </div>
-              </div>
-              {/* card 4  */}
-              <div className="team-card">
-                <div className="team-text" style={{ color: props.mode === 'dark' ? 'white' : 'black' }}>
-                  Harshit Singh: Entry-level software engineer skilled in C, C++, Python, HTML, CSS, and JavaScript. Eager to leverage abilities in problem-solving and project development for organizational growth.
-                </div>
-                <div className="team-avatar">
-                  <img src={img4} />
-                </div>
-                <div className="team-details">
-                  <h3 className="team-name" style={{ color: props.mode === 'dark' ? 'white' : 'black' }}>
-                    Harshit Singh
-                  </h3>
-                  <p className="team-desc" style={{ color: props.mode === 'dark' ? 'white' : '#777' }}>
-                    BTech CSE AIML <br /> 
-                  </p>
-                </div>
-                <div className="team-links">
-                  <ul className="list-inline">
-                    <li className="list-inline-item"><a href="https://github.com/Rajesh-9956" className="text-decoration-none d-block px-1" target="blank-3"><i className="fab fa-github"></i></a></li>
-                    <li className="list-inline-item"><a href="https://x.com/Rajeshk00020048" className="text-decoration-none d-block px-1" target="blank-2"><i className="fab fa-twitter"></i></a></li>
-                    <li className="list-inline-item"><a href="https://www.instagram.com/rajeshsahani_9911" className="text-decoration-none d-block px-1" target="blank-1"><i className="fab fa-instagram"></i></a></li>
-                    <li className="list-inline-item"><a href="https://www.linkedin.com/in/rajesh-kumar9956/" className="text-decoration-none d-block px-1" target="blank"><i className="fab fa-linkedin"></i></a></li>
-                  </ul>
-                </div>
-              </div>
+      <div className={`py-20 relative z-10 ${props.mode === 'dark' ? 'bg-[#0A0A1F]/80 backdrop-blur-md border-y border-indigo-900/30' : 'bg-white border-y border-gray-100'}`}>
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div className="text-center mb-16 animate-slide-up">
+                <h2 className={`text-sm font-bold uppercase tracking-widest mb-4 inline-block px-5 py-2.5 rounded-full ${props.mode === 'dark' ? 'text-indigo-400 bg-indigo-900/30 border border-indigo-500/30' : 'text-indigo-600 bg-indigo-50'}`}>Core Members</h2>
+                <h3 className="text-4xl md:text-5xl font-extrabold mb-6">Meet the <span className="text-gradient">Team</span></h3>
             </div>
-          </div>
+            
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+              {[
+                  { name: 'Anuj Verma', img: img1, desc: "Tech-savvy person who loves working with AI and building websites.", links: ['https://github.com/Anuj3553'] },
+                  { name: 'Jitendra Kumar', img: img2, desc: "Tech enthusiast skilled in web development and database management.", links: ['https://github.com/technical-jitendra'] },
+                  { name: 'Rajesh Kumar', img: img3, desc: "Software engineer skilled in Java, C#, HTML, CSS, and JavaScript.", links: ['https://github.com/Rajesh-9956'] },
+                  { name: 'Harshit Singh', img: img4, desc: "Software engineer skilled in C, C++, Python, HTML, CSS, and JavaScript.", links: ['https://github.com/harshit7492'] }
+              ].map((member, i) => (
+                  <div key={i} className={`group p-6 rounded-[2rem] transition-all duration-300 transform hover:-translate-y-2 text-center ${props.mode === 'dark' ? 'card-3d bg-[#151525] border border-gray-800' : 'bg-white shadow-xl hover:shadow-2xl border border-gray-100'}`}>
+                      <div className={`w-32 h-32 mx-auto rounded-full p-2 mb-6 ${props.mode === 'dark' ? 'bg-[#0B0B13] border-2 border-indigo-500/50 shadow-neon' : 'bg-indigo-50 border-2 border-indigo-200'}`}>
+                          <img src={member.img} alt={member.name} className="w-full h-full object-cover rounded-full" />
+                      </div>
+                      <h4 className={`text-xl font-bold mb-2 ${props.mode === 'dark' ? 'text-white' : 'text-gray-900'}`}>{member.name}</h4>
+                      <p className={`text-sm mb-6 ${props.mode === 'dark' ? 'text-gray-400' : 'text-gray-500'}`}>{member.desc}</p>
+                      <div className="flex justify-center gap-4">
+                          <a href={member.links[0]} target="_blank" rel="noreferrer" className={`p-2 rounded-full transition-colors ${props.mode === 'dark' ? 'bg-[#0B0B13] text-gray-400 hover:text-white hover:bg-gray-800 border border-gray-800' : 'bg-gray-100 text-gray-600 hover:text-indigo-600 hover:bg-indigo-50'}`}>
+                              <i className="fab fa-github"></i>
+                          </a>
+                          <a href="#" className={`p-2 rounded-full transition-colors ${props.mode === 'dark' ? 'bg-[#0B0B13] text-gray-400 hover:text-white hover:bg-gray-800 border border-gray-800' : 'bg-gray-100 text-gray-600 hover:text-indigo-600 hover:bg-indigo-50'}`}>
+                              <i className="fab fa-twitter"></i>
+                          </a>
+                          <a href="#" className={`p-2 rounded-full transition-colors ${props.mode === 'dark' ? 'bg-[#0B0B13] text-gray-400 hover:text-white hover:bg-gray-800 border border-gray-800' : 'bg-gray-100 text-gray-600 hover:text-indigo-600 hover:bg-indigo-50'}`}>
+                              <i className="fab fa-linkedin"></i>
+                          </a>
+                      </div>
+                  </div>
+              ))}
+            </div>
         </div>
       </div>
 
-      {/* No of Visitors */}
-
-      <div className="Team-Sec">
-        <div className="visitors-container">
-          <div className="visitors-content">
-            <h2 className="Heading-Page">
-              Visitors
-            </h2>
-            <div className="container">
-              <div className="row">
-                <div className="col-md-3 col-sm-6">
-                  <div className="counter">
-                    <div className="counter-icon">
-                      <FontAwesomeIcon icon={faUser} />
+      {/* Metrics Section */}
+      <div className={`py-16 relative z-10 ${props.mode === 'dark' ? 'bg-[#05050A]' : 'bg-gray-50'}`}>
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div className="grid grid-cols-2 md:grid-cols-4 gap-8">
+                {[
+                    { label: 'Visitors', value: '876K+', icon: faUser, color: 'text-indigo-400' },
+                    { label: 'Registrations', value: '876K+', icon: faUser, color: 'text-cyan-400' },
+                    { label: 'Participants', value: '876K+', icon: faUser, color: 'text-fuchsia-400' },
+                    { label: 'Total Projects', value: '828K+', icon: faCoffee, color: 'text-emerald-400' }
+                ].map((stat, i) => (
+                    <div key={i} className="flex flex-col items-center text-center">
+                        <div className={`w-16 h-16 rounded-2xl flex items-center justify-center mb-4 ${props.mode === 'dark' ? 'bg-[#151525] border border-gray-800 shadow-[0_0_15px_rgba(0,0,0,0.5)]' : 'bg-white shadow-lg'}`}>
+                            <FontAwesomeIcon icon={stat.icon} className={`text-2xl ${props.mode === 'dark' ? stat.color : 'text-indigo-600'}`} />
+                        </div>
+                        <h4 className={`text-3xl font-extrabold mb-1 ${props.mode === 'dark' ? 'text-white' : 'text-gray-900'}`}>{stat.value}</h4>
+                        <p className={`text-sm font-bold uppercase tracking-widest ${props.mode === 'dark' ? 'text-gray-500' : 'text-gray-500'}`}>{stat.label}</p>
                     </div>
-                    <span className="counter-value" style={{ color: props.mode === 'dark' ? 'white' : '#555' }}>876K+</span>
-                    <h3>VisitorCount</h3>
-                  </div>
-                </div>
-                <div className="col-md-3 col-sm-6">
-                  <div className="counter blue">
-                    <div className="counter-icon" style={{ color: props.mode === 'dark' ? 'white' : '#4accdb' }}>
-                      {/* <i className="fa fa-youtube"></i> */}
-                      <i className="fa-sharp fa-solid fa-pen-to-square"></i>
-                    </div>
-                    <span className="counter-value" style={{ color: props.mode === 'dark' ? 'white' : '#555' }}>876K+</span>
-                    <h3 style={{ color: props.mode === 'dark' ? 'white' : '#4accdb' }}>Registrations</h3>
-                  </div>
-                </div>
-                <div className="col-md-3 col-sm-6">
-                  <div className="counter">
-                    <div className="counter-icon">
-                      <i className="fa-solid fa-user-group"></i>
-                    </div>
-                    <span className="counter-value" style={{ color: props.mode === 'dark' ? 'white' : '#555' }}>876K+</span>
-                    <h3>Participants</h3>
-                  </div>
-                </div>
-                <div className="col-md-3 col-sm-6">
-                  <div className="counter blue">
-                    <div className="counter-icon" style={{ color: props.mode === 'dark' ? 'white' : '#4accdb' }}>
-                      {/* <i className="fa fa-rocket"></i> */}
-                      <FontAwesomeIcon icon={faCoffee} />
-                    </div>
-                    <span className="counter-value" style={{ color: props.mode === 'dark' ? 'white' : '#555' }}>828K+</span>
-                    <h3 style={{ color: props.mode === 'dark' ? 'white' : '#4accdb' }}>Total Projects</h3>
-                  </div>
-                </div>
-              </div>
+                ))}
             </div>
-          </div>
         </div>
       </div>
       {/* FAQ */}
-      <div className="accordion-container">
-
-        <div className="faq-section">
-          <div className="container">
-            <h2 className="Heading-Page mb-3">Frequent Asked Questions</h2>
-            <section>
-              <div className="accordion" id="accordionExample">
-                <div className="accordion-item">
+      <div className={`py-20 relative z-10 ${props.mode === 'dark' ? 'bg-[#0B0B13] border-t border-gray-800' : 'bg-gray-50 border-t border-gray-200'}`}>
+        <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+            <h2 className="text-3xl md:text-4xl font-extrabold mb-10 text-center">Frequently Asked <span className="text-gradient">Questions</span></h2>
+            
+            <div className="accordion rounded-2xl overflow-hidden shadow-lg" id="accordionExample">
+                <div className={`accordion-item border-b ${props.mode === 'dark' ? 'bg-[#151525] border-gray-800 text-white' : 'bg-white border-gray-200'}`}>
                   <h2 className="accordion-header">
-                    <button className="accordion-button collapsed fs-3" type="button" data-bs-toggle="collapse" data-bs-target="#collapseOne" aria-expanded="false" aria-controls="collapseOne" style={{ background: props.mode === 'dark' ? 'black' : 'white', color: props.mode === 'dark' ? 'white' : 'black' }}>
-                      Will a beginner, with absolutely no knowledge of github, gain
-                      anything fruitful?
+                    <button className={`accordion-button collapsed font-bold py-5 ${props.mode === 'dark' ? 'bg-[#151525] text-white hover:text-cyan-400 focus:bg-[#1A1A2E]' : 'bg-white text-gray-900 focus:bg-indigo-50'}`} type="button" data-bs-toggle="collapse" data-bs-target="#collapseOne">
+                      Will a beginner, with absolutely no knowledge of github, gain anything fruitful?
                     </button>
                   </h2>
                   <div id="collapseOne" className="accordion-collapse collapse" data-bs-parent="#accordionExample">
-                    <div className="accordion-body fs-5" style={{ background: props.mode === 'dark' ? 'black' : 'white', color: props.mode === 'dark' ? 'white' : 'black' }}>
-                      Yeah, definitely. The organization is meant to assist the
-                      beginners grow in the field of development. We’ll have distinct
-                      projects appropriate both for beginners as well as the accolades
-                      and thereby we’ll make sure that each and every participant gets
-                      to learn something new from the projects he or she is
-                      contributing for.
+                    <div className={`accordion-body ${props.mode === 'dark' ? 'text-gray-400 bg-[#151525]' : 'text-gray-600 bg-white'}`}>
+                      Yeah, definitely. The organization is meant to assist the beginners grow in the field of development. We'll have distinct projects appropriate both for beginners as well as the accolades and thereby we'll make sure that each and every participant gets to learn something new from the projects he or she is contributing for.
                     </div>
                   </div>
                 </div>
-                <div className="accordion-item">
+
+                <div className={`accordion-item border-b ${props.mode === 'dark' ? 'bg-[#151525] border-gray-800 text-white' : 'bg-white border-gray-200'}`}>
                   <h2 className="accordion-header">
-                    <button className="accordion-button collapsed fs-3" type="button" data-bs-toggle="collapse" data-bs-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo" style={{ background: props.mode === 'dark' ? 'black' : 'white', color: props.mode === 'dark' ? 'white' : 'black' }}>
+                    <button className={`accordion-button collapsed font-bold py-5 ${props.mode === 'dark' ? 'bg-[#151525] text-white hover:text-cyan-400 focus:bg-[#1A1A2E]' : 'bg-white text-gray-900 focus:bg-indigo-50'}`} type="button" data-bs-toggle="collapse" data-bs-target="#collapseTwo">
                       Are there any charges for registration?
                     </button>
                   </h2>
                   <div id="collapseTwo" className="accordion-collapse collapse" data-bs-parent="#accordionExample">
-                    <div className="accordion-body fs-5" style={{ background: props.mode === 'dark' ? 'black' : 'white', color: props.mode === 'dark' ? 'white' : 'black' }}>
+                    <div className={`accordion-body ${props.mode === 'dark' ? 'text-gray-400 bg-[#151525]' : 'text-gray-600 bg-white'}`}>
                       No, there are no fees associated with participation. It is completely free of charge.
                     </div>
                   </div>
                 </div>
-                <div className="accordion-item">
+
+                <div className={`accordion-item border-b ${props.mode === 'dark' ? 'bg-[#151525] border-gray-800 text-white' : 'bg-white border-gray-200'}`}>
                   <h2 className="accordion-header">
-                    <button className="accordion-button collapsed fs-3" type="button" data-bs-toggle="collapse" data-bs-target="#collapseThree" aria-expanded="false" aria-controls="collapseThree" style={{ background: props.mode === 'dark' ? 'black' : 'white', color: props.mode === 'dark' ? 'white' : 'black' }}>
+                    <button className={`accordion-button collapsed font-bold py-5 ${props.mode === 'dark' ? 'bg-[#151525] text-white hover:text-cyan-400 focus:bg-[#1A1A2E]' : 'bg-white text-gray-900 focus:bg-indigo-50'}`} type="button" data-bs-toggle="collapse" data-bs-target="#collapseThree">
                       Is there a specific age requirement for participation?
                     </button>
                   </h2>
                   <div id="collapseThree" className="accordion-collapse collapse" data-bs-parent="#accordionExample">
-                    <div className="accordion-body fs-5" style={{ background: props.mode === 'dark' ? 'black' : 'white', color: props.mode === 'dark' ? 'white' : 'black' }}>
-                      No, there are no age restrictions for joining GSSoC. All age groups are welcome to participate.
+                    <div className={`accordion-body ${props.mode === 'dark' ? 'text-gray-400 bg-[#151525]' : 'text-gray-600 bg-white'}`}>
+                      No, there are no age restrictions for joining. All age groups are welcome to participate.
                     </div>
                   </div>
                 </div>
-
-                <div className="accordion-item">
-                  <h2 className="accordion-header">
-                    <button className="accordion-button collapsed fs-3" type="button" data-bs-toggle="collapse" data-bs-target="#collapseFour" aria-expanded="false" aria-controls="collapseFour" style={{ background: props.mode === 'dark' ? 'black' : 'white', color: props.mode === 'dark' ? 'white' : 'black' }}>
-                      What are the project requirements?
-                    </button>
-                  </h2>
-                  <div id="collapseFour" className="accordion-collapse collapse" data-bs-parent="#accordionExample">
-                    <div className="accordion-body fs-5" style={{ background: props.mode === 'dark' ? 'black' : 'white', color: props.mode === 'dark' ? 'white' : 'black' }}>
-                      Projects are not bound by specific conditions. Mentors can propose ideas in their areas of expertise without restriction.
-                    </div>
-                  </div>
-                </div>
-
-                <div className="accordion-item">
-                  <h2 className="accordion-header">
-                    <button className="accordion-button collapsed fs-3" type="button" data-bs-toggle="collapse" data-bs-target="#collapseFive" aria-expanded="false" aria-controls="collapseive" style={{ background: props.mode === 'dark' ? 'black' : 'white', color: props.mode === 'dark' ? 'white' : 'black' }}>
-                      As a beginner, where should we begin to contribute effectively to projects?
-                    </button>
-                  </h2>
-                  <div id="collapseFive" className="accordion-collapse collapse" data-bs-parent="#accordionExample">
-                    <div className="accordion-body fs-5" style={{ background: props.mode === 'dark' ? 'black' : 'white', color: props.mode === 'dark' ? 'white' : 'black' }}>
-                      You can kickstart your journey by accessing the resources available on our official website. We offer links to GitHub and other development tools to ensure that everyone can contribute effectively to the projects.
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </section>
-          </div>
+            </div>
         </div>
       </div>
-      {/* Info */}
-      {/* <div className="info">
-          <p className='fs-4'>&quot;Open source is a shared vision of building a community of similar -minded individuals. Together, we collaborate, innovate, and shape the future of technology with transparency and inclusivity at its core  write in more effective way&quot;</p>
-        </div> */}
     </div>
   );
 }
